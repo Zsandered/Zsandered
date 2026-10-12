@@ -67,3 +67,7 @@ Invoke-RestMethod http://127.0.0.1:3000/api/admin/screening-programs -Headers $h
 ```
 
 Admin token configuration is process-local. Public reads are unauthenticated, but the server binds to `127.0.0.1` by default and does not enable cross-origin access. Do not expose this local admin API to the internet without adding deployment-grade authentication, authorization, transport security, and operational safeguards.
+
+## Interactive learning
+
+The Genetics page includes a keyboard-accessible DNA substitution lab. Visitors can compare how changing the first base of the coding-strand codon CGA affects the mRNA codon and amino-acid outcome. The C-to-A and C-to-G examples are hypothetical classroom comparisons, not clinical interpretations. A reading-progress indicator and section-specific color treatments help visitors follow the material.
