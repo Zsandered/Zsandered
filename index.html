@@ -894,7 +894,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
         <a href="/">Overview</a><a href="/disease">The Disease</a>
         <a href="/numbers">Key Numbers</a><a href="/screening">Screening</a>
         <a href="/clinical">Clinical</a><a href="/genetics">Genetics</a>
-        <a href="/references">References</a><a class="nav-login" href="/login">Sign in</a>
+        <a href="/references">References</a><a class="nav-login" href="login.html">Sign in</a>
       </nav>
     </div>
   </header>
@@ -905,39 +905,6 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
       <span id="page-context">Pompe disease · GlycoGuard</span>
       <nav class="page-section-nav" id="page-section-nav" aria-label="On this page"></nav>
     </div>
-    <section class="section login-screen" id="login">
-      <div class="container login-shell">
-        <a class="login-back" href="/">← Back to GlycoGuard</a>
-        <div class="login-card">
-          <aside class="login-story">
-            <div class="login-mark" aria-hidden="true"><svg viewBox="0 0 24 30" fill="none"><path d="M6 2c13 5 13 21 0 26M18 2C5 7 5 23 18 28M8 6h8M6.5 12h11M6.5 18h11M8 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-            <p class="login-kicker">Pompe disease · Learning hub</p>
-            <h1>Welcome to your GlycoGuard workspace.</h1>
-            <p>Continue exploring the molecular story—from a change in the GAA gene to its effect on lysosomal glycogen breakdown.</p>
-            <div class="login-flow" aria-label="DNA to RNA to protein"><span>DNA</span><b aria-hidden="true">→</b><span>RNA</span><b aria-hidden="true">→</b><span>GAA</span></div>
-            <p class="login-caption">A learning dashboard for genetics, newborn screening, clinical context, and evidence.</p>
-          </aside>
-          <div class="login-form-panel">
-            <div class="login-form-brand"><svg viewBox="0 0 24 30" fill="none" aria-hidden="true"><path d="M6 2c13 5 13 21 0 26M18 2C5 7 5 23 18 28M8 6h8M6.5 12h11M6.5 18h11M8 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>GlycoGuard</div>
-            <h2>Sign in</h2>
-            <p class="login-form-intro">Enter your account details to continue.</p>
-            <form id="login-form">
-              <label class="login-field" for="login-email">Email address
-                <input id="login-email" name="email" type="email" autocomplete="username" placeholder="you@example.com" required>
-              </label>
-              <label class="login-field" for="login-password">Password
-                <span class="login-password-wrap"><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button class="login-password-toggle" id="login-password-toggle" type="button" aria-controls="login-password" aria-pressed="false">Show</button></span>
-              </label>
-              <button class="login-submit" type="submit">Continue <span aria-hidden="true">→</span></button>
-              <p class="login-status" id="login-status" role="status" aria-live="polite" hidden></p>
-              <p class="login-auth-note">Secure account verification has not been connected yet. This sign-in screen is a preview and cannot authenticate or protect accounts.</p>
-              <a class="login-dashboard-link" href="/">Return to the public dashboard →</a>
-            </form>
-            <p class="login-footer-note">GlycoGuard is an educational resource, not a medical service. No sign-in information is transmitted or saved by this preview.</p>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="hero" id="overview">
       <div class="hero-content">
         <figure class="hero-illustration">
@@ -1523,7 +1490,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
       "/screening": ["screening"],
       "/clinical": ["clinical", "diagnosis", "treatment"],
       "/genetics": ["genetics", "dna", "mutation-lab", "transcription", "translation", "mutation", "pathway", "mutation-quiz", "research"],
-      "/references": ["references"],       "/login": ["login"]
+      "/references": ["references"]
     };
     const routeTitles = {
       "/": "GlycoGuard — The Molecular Story of Pompe Disease",
@@ -1532,7 +1499,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
       "/screening": "Newborn Screening — GlycoGuard",
       "/clinical": "Clinical Context — GlycoGuard",
       "/genetics": "Genetics & Molecular Biology — GlycoGuard",
-      "/references": "References — GlycoGuard",       "/login": "Sign in — GlycoGuard"
+      "/references": "References — GlycoGuard"
     };
     const projectBase = window.location.hostname === "zsandered.github.io" ? "/Zsandered" : "";
     const requestedRoute = new URLSearchParams(window.location.search).get("page");
