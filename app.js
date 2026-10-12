@@ -203,6 +203,11 @@ const renderProgrammes = (programmes) => {
 };
 
 const loadEvidenceData = async () => {
+  if (window.location.hostname === "zsandered.github.io") {
+    setApiStatus("estimates-api-status", "Showing the supplied sample estimates on this static site.");
+    setApiStatus("screening-api-status", "Showing the supplied sample programmes on this static site.");
+    return;
+  }
   try {
     const [estimatesResponse, programmesResponse] = await Promise.all([
       fetch("/api/estimates"),
