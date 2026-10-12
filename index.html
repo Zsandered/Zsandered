@@ -812,7 +812,28 @@
       .mechanism-controls button { flex: 1; }
       .mechanism-progress progress { flex: 1; }
     }
-  </style>
+  
+    .quiz-card { max-width: 820px; margin: 0 auto; padding: clamp(22px, 4vw, 38px); border: 1px solid var(--border); border-radius: var(--radius); background: linear-gradient(145deg, #fff 0%, #f4faf8 100%); box-shadow: var(--shadow); }
+    .quiz-topline { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 20px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .quiz-progress { height: 8px; overflow: hidden; border-radius: 99px; background: #e7edf0; }
+    .quiz-progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--teal); transition: width .25s ease; }
+    .quiz-question { margin: 24px 0 16px; padding: 0; border: 0; }
+    .quiz-question legend { margin-bottom: 18px; color: var(--ink); font-family: var(--serif); font-size: clamp(20px, 3vw, 27px); font-weight: 700; line-height: 1.3; }
+    .quiz-options { display: grid; gap: 10px; }
+    .quiz-option { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 14px; background: #fff; cursor: pointer; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+    .quiz-option:hover { transform: translateY(-1px); border-color: var(--teal); }
+    .quiz-option:has(input:checked) { border-color: var(--teal); background: #edf7f3; }
+    .quiz-option input { margin-top: 4px; accent-color: var(--teal); }
+    .quiz-feedback { min-height: 52px; margin: 18px 0 0; padding: 13px 15px; border-radius: 12px; background: #f2f5f5; color: var(--ink); line-height: 1.55; }
+    .quiz-feedback.correct { background: #e8f5ee; color: #176b47; }
+    .quiz-feedback.incorrect { background: #fff0eb; color: #9b3a27; }
+    .quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .quiz-actions button { border: 0; border-radius: 999px; padding: 12px 20px; background: var(--navy); color: #fff; font: inherit; font-weight: 750; cursor: pointer; }
+    .quiz-actions button.secondary { border: 1px solid var(--border); background: #fff; color: var(--ink); }
+    .quiz-actions button:disabled { opacity: .5; cursor: not-allowed; }
+    .quiz-start { margin-top: 20px; }
+    @media (prefers-reduced-motion: reduce) { .quiz-progress span, .quiz-option { transition: none; } }
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -1324,6 +1345,23 @@
       </div>
     </section>
 
+    <section class="section" id="mutation-quiz">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Interactive Checkpoint</p>
+          <h2>Can You Trace the Mutation?</h2>
+          <p class="lead">Test how the c.2560C&gt;T example moves from a DNA base change to its effect on the lysosome. You can retry as many times as you like.</p>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-topline"><span id="quiz-progress-label">Ready when you are</span><span id="quiz-score" aria-live="polite">Score: 0 / 3</span></div>
+          <div class="quiz-progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span id="quiz-progress-bar"></span></div>
+          <div id="quiz-intro"><p>Follow the sequence: template DNA → mRNA → protein → lysosomal function. Choose an answer for each question and check it to see an explanation.</p><button class="quiz-start" id="quiz-start" type="button">Start the challenge</button></div>
+          <div id="quiz-game" hidden><fieldset class="quiz-question"><legend id="quiz-question"></legend><div class="quiz-options" id="quiz-options"></div></fieldset><p class="quiz-feedback" id="quiz-feedback" aria-live="polite">Choose one answer to continue.</p><div class="quiz-actions"><button id="quiz-check" type="button" disabled>Check answer</button><button id="quiz-next" class="secondary" type="button" hidden>Next question</button></div></div>
+          <div id="quiz-result" hidden aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="research">
       <div class="container">
         <div class="section-heading">
@@ -1408,7 +1446,7 @@
       "/numbers": ["numbers"],
       "/screening": ["screening"],
       "/clinical": ["clinical", "diagnosis", "treatment"],
-      "/genetics": ["genetics", "dna", "transcription", "translation", "mutation", "pathway", "research"],
+      "/genetics": ["genetics", "dna", "transcription", "translation", "mutation", "pathway", "mutation-quiz", "research"],
       "/references": ["references"]
     };
     const routeTitles = {
@@ -1646,6 +1684,93 @@
     pageSectionNav.querySelectorAll("a").forEach((link) => {
       const section = document.getElementById(link.hash.slice(1));
       if (section) sectionObserver.observe(section);
+    });
+
+    const quizQuestions = [
+      { prompt: "The DNA template triplet is ACT. Which mRNA codon is transcribed?", options: ["UGA", "ACU", "TGA"], answer: 0, explanation: "Template DNA ACT pairs with mRNA UGA (A→U, C→G, T→A)." },
+      { prompt: "In the coding strand, c.2560C>T changes CGA to TGA. What does this change introduce?", options: ["A stop codon that ends translation early", "A second arginine codon", "An extra DNA base"], answer: 0, explanation: "TGA in coding DNA corresponds to UGA in mRNA, a stop codon. This is a nonsense substitution in the example." },
+      { prompt: "What is the downstream effect described for Pompe disease?", options: ["Shortened GAA enzyme activity is reduced, so lysosomal glycogen builds up", "The lysosome makes extra GAA and removes all glycogen", "The mutation directly changes glycogen into glucose"], answer: 0, explanation: "Reduced acid alpha-glucosidase activity impairs lysosomal glycogen breakdown. Glycogen accumulation can disrupt cells and contribute to disease features." }
+    ];
+    const quizIntro = document.getElementById("quiz-intro");
+    const quizGame = document.getElementById("quiz-game");
+    const quizResult = document.getElementById("quiz-result");
+    const quizQuestion = document.getElementById("quiz-question");
+    const quizOptions = document.getElementById("quiz-options");
+    const quizFeedback = document.getElementById("quiz-feedback");
+    const quizCheck = document.getElementById("quiz-check");
+    const quizNext = document.getElementById("quiz-next");
+    const quizProgressLabel = document.getElementById("quiz-progress-label");
+    const quizScore = document.getElementById("quiz-score");
+    const quizProgress = document.querySelector(".quiz-progress");
+    const quizProgressBar = document.getElementById("quiz-progress-bar");
+    let quizIndex = 0;
+    let quizPoints = 0;
+    let quizAnswered = false;
+    const renderQuizQuestion = () => {
+      const question = quizQuestions[quizIndex];
+      quizAnswered = false;
+      quizQuestion.textContent = question.prompt;
+      quizOptions.replaceChildren();
+      question.options.forEach((option, index) => {
+        const label = document.createElement("label");
+        label.className = "quiz-option";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "mutation-quiz-answer";
+        input.value = String(index);
+        input.addEventListener("change", () => { quizCheck.disabled = false; });
+        const text = document.createElement("span");
+        text.textContent = option;
+        label.append(input, text);
+        quizOptions.append(label);
+      });
+      quizProgressLabel.textContent = "Question " + (quizIndex + 1) + " of " + quizQuestions.length;
+      quizScore.textContent = "Score: " + quizPoints + " / " + quizQuestions.length;
+      quizProgress.setAttribute("aria-valuenow", String(quizIndex));
+      quizProgressBar.style.width = ((quizIndex / quizQuestions.length) * 100) + "%";
+      quizFeedback.textContent = "Choose one answer, then check it.";
+      quizFeedback.className = "quiz-feedback";
+      quizCheck.disabled = true;
+      quizCheck.hidden = false;
+      quizNext.hidden = true;
+      quizNext.textContent = quizIndex === quizQuestions.length - 1 ? "See my result" : "Next question";
+    };
+    document.getElementById("quiz-start").addEventListener("click", () => { quizIntro.hidden = true; quizResult.hidden = true; quizGame.hidden = false; quizIndex = 0; quizPoints = 0; renderQuizQuestion(); quizQuestion.focus(); });
+    quizCheck.addEventListener("click", () => {
+      if (quizAnswered) return;
+      const selected = quizOptions.querySelector("input:checked");
+      if (!selected) return;
+      quizAnswered = true;
+      const correct = Number(selected.value) === quizQuestions[quizIndex].answer;
+      if (correct) quizPoints += 1;
+      quizFeedback.textContent = (correct ? "Correct! " : "Not quite. ") + quizQuestions[quizIndex].explanation;
+      quizFeedback.className = "quiz-feedback " + (correct ? "correct" : "incorrect");
+      quizScore.textContent = "Score: " + quizPoints + " / " + quizQuestions.length;
+      quizProgress.setAttribute("aria-valuenow", String(quizIndex + 1));
+      quizProgressBar.style.width = (((quizIndex + 1) / quizQuestions.length) * 100) + "%";
+      quizOptions.querySelectorAll("input").forEach((input) => { input.disabled = true; });
+      quizCheck.hidden = true;
+      quizNext.hidden = false;
+      quizNext.focus();
+    });
+    quizNext.addEventListener("click", () => {
+      if (quizIndex < quizQuestions.length - 1) { quizIndex += 1; renderQuizQuestion(); quizQuestion.focus(); return; }
+      quizGame.hidden = true;
+      quizResult.hidden = false;
+      quizProgressLabel.textContent = "Challenge complete";
+      quizProgress.setAttribute("aria-valuenow", String(quizQuestions.length));
+      quizProgressBar.style.width = "100%";
+      const heading = document.createElement("h3");
+      heading.textContent = quizPoints === quizQuestions.length ? "Excellent work!" : "Nice effort - review the pathway and try again.";
+      const summary = document.createElement("p");
+      summary.textContent = "You scored " + quizPoints + " out of " + quizQuestions.length + ". The key chain is DNA change → stop codon → shortened enzyme → reduced lysosomal glycogen breakdown.";
+      const retry = document.createElement("button");
+      retry.className = "quiz-start";
+      retry.type = "button";
+      retry.textContent = "Try again";
+      retry.addEventListener("click", () => { quizResult.hidden = true; quizGame.hidden = false; quizIndex = 0; quizPoints = 0; renderQuizQuestion(); quizQuestion.focus(); });
+      quizResult.replaceChildren(heading, summary, retry);
+      quizNext.hidden = true;
     });
   </script>
   <script src="app.js" defer></script>
