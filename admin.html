@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ee">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Evidence admin · GlycoGuard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f4ee;
+      --surface: #fff;
+      --ink: #302f2a;
+      --body: #56554e;
+      --muted: #77756b;
+      --border: #dedbd1;
+      --green: #315d4c;
+      --green-soft: #e8f1e9;
+      --amber: #89613b;
+      --red: #9b4540;
+      --red-soft: #faece8;
+      --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--sans);
+      color: var(--body);
+      background: var(--paper);
+    }
+    * { box-sizing: border-box; }
+    body { min-width: 320px; margin: 0; background: var(--paper); font: 14px/1.6 var(--sans); }
+    button, input, select { font: inherit; }
+    button, input, select, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid rgba(82,121,100,.5); outline-offset: 3px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between;
+      min-height: 68px; padding: 0 max(20px, calc((100vw - 1160px)/2));
+      border-bottom: 1px solid var(--border); background: rgba(250,249,245,.95); backdrop-filter: blur(14px);
+    }
+    .brand { color: var(--ink); font: 600 21px/1 var(--serif); text-decoration: none; }
+    .brand span { margin-left: 8px; color: var(--muted); font: 700 9px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+    .back-link { color: var(--green); font-size: 12px; font-weight: 700; text-decoration: none; }
+    main { width: min(100% - 36px, 1160px); margin: 0 auto; padding: 42px 0 80px; }
+    .hero { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 27px; }
+    .eyebrow { margin: 0 0 8px; color: var(--amber); font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+    h1 { margin: 0; color: var(--ink); font: 500 clamp(34px, 5vw, 48px)/1.1 var(--serif); letter-spacing: -.03em; }
+    .intro { max-width: 680px; margin: 10px 0 0; color: var(--muted); }
+    .button {
+      min-height: 40px; padding: 9px 14px; border: 1px solid var(--border); border-radius: 7px;
+      color: var(--ink); background: #fff; font-size: 12px; font-weight: 750; cursor: pointer;
+      transition: transform .15s, box-shadow .15s, background .15s;
+    }
+    .button:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(48,47,42,.1); }
+    .button.primary { color: white; border-color: #2d403e; background: #2d403e; }
+    .button.approve { color: #315d4c; border-color: #cbded0; background: var(--green-soft); }
+    .button.reject { color: var(--red); border-color: #eed5cf; background: var(--red-soft); }
+    .button:disabled { opacity: .55; cursor: wait; transform: none; }
+    .auth-card, .panel, .record, .stat { border: 1px solid var(--border); border-radius: 11px; background: rgba(255,255,255,.9); box-shadow: 0 8px 24px rgba(48,47,42,.045); }
+    .auth-card { max-width: 560px; margin: 38px auto; padding: 26px; }
+    .auth-card h2 { margin: 0; color: var(--ink); font: 26px/1.2 var(--serif); }
+    .auth-card p { margin: 8px 0 19px; color: var(--muted); font-size: 13px; }
+    .field-label { display: block; margin-bottom: 6px; color: var(--ink); font-size: 11px; font-weight: 800; }
+    .auth-row { display: flex; gap: 8px; }
+    input, select {
+      min-width: 0; min-height: 41px; padding: 9px 11px; border: 1px solid #d9d7cd;
+      border-radius: 6px; color: var(--ink); background: #fff;
+    }
+    .auth-row input { flex: 1; }
+    .hint { margin: 12px 0 0 !important; font-size: 11px !important; }
+    .notice { margin: 14px 0; padding: 11px 13px; border: 1px solid #d9e5d9; border-radius: 7px; color: #315d4c; background: #edf4ed; font-size: 12px; }
+    .notice.error { border-color: #eed5cf; color: var(--red); background: var(--red-soft); }
+    .notice[hidden], [hidden] { display: none !important; }
+    .dashboard { display: grid; gap: 18px; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+    .stat { padding: 15px 17px; }
+    .stat span { display: block; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 4px; color: var(--ink); font: 27px/1.1 var(--serif); font-variant-numeric: tabular-nums; }
+    .panel { overflow: hidden; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); background: #fbfaf6; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tab { padding: 8px 11px; border: 1px solid transparent; border-radius: 6px; color: var(--muted); background: transparent; font-size: 11px; font-weight: 800; cursor: pointer; }
+    .tab[aria-selected="true"] { color: var(--green); border-color: #d6e2d6; background: #edf3eb; }
+    .filters { display: flex; align-items: center; gap: 8px; }
+    .filters input { width: min(250px, 40vw); }
+    .filters select { width: 155px; }
+    .record-list { display: grid; gap: 10px; padding: 14px; }
+    .record { padding: 15px 16px; box-shadow: none; }
+    .record-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .record h3 { margin: 0; color: var(--ink); font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
+    .record-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 5px; color: var(--muted); font-size: 11px; }
+    .badge { flex: 0 0 auto; padding: 4px 8px; border: 1px solid #e2dfd5; border-radius: 999px; color: #66645c; background: #f6f4ee; font-size: 9px; font-weight: 850; letter-spacing: .06em; }
+    .badge[data-status="APPROVED"] { color: #315d4c; border-color: #cbded0; background: var(--green-soft); }
+    .badge[data-status="PENDING_REVIEW"], .badge[data-status="DRAFT"] { color: #805b2b; border-color: #ebdfc7; background: #fbf3e4; }
+    .badge[data-status="REJECTED"] { color: var(--red); border-color: #eed5cf; background: var(--red-soft); }
+    .record-details { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 5px 14px; margin-top: 12px; }
+    .detail { min-width: 0; color: #66645c; font-size: 11px; overflow-wrap: anywhere; }
+    .detail strong { color: var(--ink); font-weight: 750; }
+    .record-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; padding-top: 11px; border-top: 1px solid #eeece5; }
+    .record-actions .button { min-height: 33px; padding: 6px 10px; font-size: 10px; }
+    .record-actions .push { flex: 1; }
+    .empty { padding: 42px 18px; color: var(--muted); text-align: center; }
+    .empty strong { display: block; margin-bottom: 4px; color: var(--ink); font: 21px/1.2 var(--serif); }
+    footer { padding: 20px; color: var(--muted); text-align: center; font-size: 10px; }
+    @media (max-width: 680px) {
+      main { width: min(100% - 28px,1160px); padding-top: 28px; }
+      .hero { align-items: flex-start; flex-direction: column; }
+      .hero > .button { align-self: stretch; }
+      .stats { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+      .stat { padding: 12px; }
+      .stat strong { font-size: 24px; }
+      .toolbar { align-items: stretch; }
+      .tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .tab { padding-inline: 5px; }
+      .filters { display: grid; grid-template-columns: 1fr; }
+      .filters input, .filters select { width: 100%; }
+      .record { padding: 13px; }
+      .record-details { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">GlycoGuard <span>Evidence admin</span></a>
+    <a class="back-link" href="/">← View dashboard</a>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Private workspace · evidence review</p>
+        <h1>Evidence administration</h1>
+        <p class="intro">Review source-linked evidence before it appears on the public dashboard. Approval is available only when linked sources satisfy the API's provenance rules.</p>
+      </div>
+      <button class="button" id="logout" type="button" hidden>Sign out</button>
+    </section>
+    <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+    <section class="auth-card" id="auth-card" aria-labelledby="auth-title">
+      <h2 id="auth-title">Admin sign in</h2>
+      <p>Enter the server's <code>ADMIN_TOKEN</code>. The token is kept in this browser tab only and is never stored in the database.</p>
+      <form id="auth-form">
+        <label class="field-label" for="admin-token">Admin token</label>
+        <div class="auth-row">
+          <input id="admin-token" name="token" type="password" autocomplete="current-password" required>
+          <button class="button primary" type="submit">Sign in</button>
+        </div>
+      </form>
+      <p class="hint">If sign-in is unavailable, start the server with <code>ADMIN_TOKEN</code> configured. Do not share or commit the token.</p>
+    </section>
+    <section class="dashboard" id="dashboard" hidden aria-label="Evidence records">
+      <div class="stats" id="stats" aria-label="Evidence summary"></div>
+      <section class="panel">
+        <div class="toolbar">
+          <div class="tabs" role="tablist" aria-label="Evidence type">
+            <button class="tab" type="button" role="tab" data-kind="sources" aria-selected="true">Sources</button>
+            <button class="tab" type="button" role="tab" data-kind="programs" aria-selected="false">Screening</button>
+            <button class="tab" type="button" role="tab" data-kind="estimates" aria-selected="false">Estimates</button>
+          </div>
+          <div class="filters">
+            <input id="search" type="search" placeholder="Search this list…" aria-label="Search records">
+            <select id="status-filter" aria-label="Filter by review status">
+              <option value="ALL">All review statuses</option>
+              <option value="PENDING_REVIEW">Pending review</option>
+              <option value="DRAFT">Draft</option>
+              <option value="APPROVED">Approved</option>
+              <option value="REJECTED">Rejected</option>
+              <option value="ARCHIVED">Archived</option>
+            </select>
+          </div>
+        </div>
+        <div class="record-list" id="record-list" role="tabpanel" aria-live="polite"></div>
+      </section>
+    </section>
+  </main>
+  <footer>Educational evidence only · no patient records · server authorization required for all review actions</footer>
+  <script src="/admin.js" defer></script>
+</body>
+</html>
