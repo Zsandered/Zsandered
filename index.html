@@ -833,9 +833,12 @@
     .quiz-actions button:disabled { opacity: .5; cursor: not-allowed; }
     .quiz-start { margin-top: 20px; }
     @media (prefers-reduced-motion: reduce) { .quiz-progress span, .quiz-option { transition: none; } }
+
+main>.section{position:relative;isolation:isolate;background-size:cover;background-position:center}#overview,#clinical,#translation,#mutation,#research{background-image:radial-gradient(ellipse at 8% 18%,rgba(46,125,107,.11),transparent 35%),radial-gradient(ellipse at 92% 85%,rgba(251,191,36,.12),transparent 32%),linear-gradient(135deg,#fff,#f3f8f6)}#disease,#numbers,#genetics,#dna,#pathway,#mutation-quiz{background-image:radial-gradient(ellipse at 92% 12%,rgba(217,119,87,.12),transparent 32%),radial-gradient(ellipse at 8% 88%,rgba(251,191,36,.14),transparent 34%),linear-gradient(135deg,#fff,#fbf7ed)}#screening,#diagnosis,#treatment,#transcription{background-image:radial-gradient(ellipse at 8% 15%,rgba(25,118,210,.09),transparent 32%),radial-gradient(ellipse at 92% 88%,rgba(46,125,107,.13),transparent 36%),linear-gradient(135deg,#fff,#f1f8fa)}.info-card,.kpi,.screen-card,.reference-card,.sequence-card,.step-card,.topic-card{transition:transform .22s,box-shadow .22s,border-color .22s}.info-card:hover,.kpi:hover,.screen-card:hover,.reference-card:hover,.sequence-card:hover,.step-card:hover,.topic-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(11,42,53,.1);border-color:rgba(46,125,107,.32)}.reading-progress{position:fixed;inset:0 0 auto;z-index:1000;height:4px;background:rgba(11,42,53,.08);pointer-events:none}.reading-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--teal),#fbbf24,var(--terracotta));transition:width .08s}#mutation-lab{background-image:radial-gradient(ellipse at 10% 15%,rgba(46,125,107,.16),transparent 34%),radial-gradient(ellipse at 90% 90%,rgba(251,191,36,.19),transparent 34%),linear-gradient(145deg,#f7fbf8,#fff8e8)}.mutation-lab-card{max-width:900px;margin:auto;padding:clamp(22px,4vw,38px);border:1px solid rgba(46,125,107,.2);border-radius:26px;background:rgba(255,255,255,.86);box-shadow:0 24px 60px rgba(11,42,53,.09)}.mutation-choice-row,.mutation-result{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}.mutation-choice{padding:15px 12px;border:1px solid var(--border);border-radius:15px;background:#fff;color:var(--ink);font:inherit;font-weight:750;cursor:pointer}.mutation-choice:hover{border-color:var(--teal)}.mutation-choice[aria-pressed="true"]{border-color:var(--teal);background:#eaf5ef;box-shadow:inset 0 0 0 1px var(--teal)}.mutation-result-card{padding:18px;border-radius:17px;background:#f5f8f7;border:1px solid #e5eeeb}.mutation-result-card span{display:block;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.mutation-result-card strong{display:block;margin-top:9px;color:var(--navy);font:700 clamp(21px,4vw,30px) var(--mono)}.mutation-result-card .stop-result{color:#b42336}.mutation-explanation{min-height:54px;padding:14px 16px;border-radius:14px;background:#edf4f1;line-height:1.6}.mutation-note{color:var(--muted);font-size:13px;line-height:1.55}@media(max-width:600px){.mutation-choice-row,.mutation-result{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){.info-card,.kpi,.screen-card,.reference-card,.sequence-card,.step-card,.topic-card,.mutation-choice,.reading-progress span{transition:none}}
 </style>
 </head>
 <body>
+<div class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="nav-wrap">
@@ -1233,6 +1236,7 @@
         </div>
       </div>
     </section>
+<section class="section" id="mutation-lab"><div class="container"><div class="section-heading"><p class="eyebrow">Interactive DNA Lab · Try a substitution</p><h2>One Base, Three Possible Outcomes</h2><p class="lead">Start with coding-strand codon CGA (arginine). Change its first base to compare a stop, a synonymous change, and an amino-acid substitution.</p></div><div class="mutation-lab-card"><p><strong>Choose a replacement for the first base C:</strong></p><div class="mutation-choice-row" role="group" aria-label="Choose a DNA base substitution"><button class="mutation-choice" type="button" data-lab-base="T" aria-pressed="true">C → T · featured example</button><button class="mutation-choice" type="button" data-lab-base="A" aria-pressed="false">C → A · compare</button><button class="mutation-choice" type="button" data-lab-base="G" aria-pressed="false">C → G · compare</button></div><div class="mutation-result" aria-live="polite" aria-atomic="true"><div class="mutation-result-card"><span>Mutated DNA codon</span><strong id="lab-dna-codon" class="stop-result">TGA</strong></div><div class="mutation-result-card"><span>Matching mRNA codon</span><strong id="lab-mrna-codon" class="stop-result">UGA</strong></div><div class="mutation-result-card"><span>Codon outcome</span><strong id="lab-amino-acid" class="stop-result">STOP</strong></div></div><p class="mutation-explanation" id="lab-explanation">TGA in coding DNA becomes UGA in mRNA, an early stop signal in this simplified example.</p><p class="mutation-note">Classroom simulation only. C→T is the featured c.2560C&gt;T example; C→A and C→G are hypothetical codon comparisons, not clinical interpretations or medical advice.</p></div></div></section>
 
     <section class="section alt" id="transcription">
       <div class="container">
@@ -1446,7 +1450,7 @@
       "/numbers": ["numbers"],
       "/screening": ["screening"],
       "/clinical": ["clinical", "diagnosis", "treatment"],
-      "/genetics": ["genetics", "dna", "transcription", "translation", "mutation", "pathway", "mutation-quiz", "research"],
+      "/genetics": ["genetics", "dna", "mutation-lab", "transcription", "translation", "mutation", "pathway", "mutation-quiz", "research"],
       "/references": ["references"]
     };
     const routeTitles = {
@@ -1773,6 +1777,8 @@
       quizNext.hidden = true;
     });
   </script>
-  <script src="app.js" defer></script>
+  <script src="app.js" defer>
+const mutationOutcomes={T:{dna:"TGA",mrna:"UGA",amino:"STOP",cls:"stop-result",text:"TGA in coding DNA becomes UGA in mRNA, an early stop signal in this simplified example."},A:{dna:"AGA",mrna:"AGA",amino:"Arg",cls:"",text:"AGA also encodes arginine, so this comparison keeps the same amino acid. This alone does not predict a clinical outcome."},G:{dna:"GGA",mrna:"GGA",amino:"Gly",cls:"",text:"GGA encodes glycine instead of arginine, a missense change in this codon-level exercise. Its real-world effect cannot be determined here."}};const ld=document.getElementById("lab-dna-codon"),lm=document.getElementById("lab-mrna-codon"),la=document.getElementById("lab-amino-acid"),le=document.getElementById("lab-explanation");document.querySelectorAll("[data-lab-base]").forEach(btn=>btn.addEventListener("click",()=>{const o=mutationOutcomes[btn.dataset.labBase];document.querySelectorAll("[data-lab-base]").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));[[ld,o.dna],[lm,o.mrna],[la,o.amino]].forEach(([el,val])=>{el.textContent=val;el.className=o.cls});le.textContent=o.text}));const rp=document.querySelector(".reading-progress"),upd=()=>{const d=document.documentElement.scrollHeight-innerHeight,p=d>0?Math.min(100,Math.round(scrollY/d*100)):0;rp.setAttribute("aria-valuenow",String(p));rp.firstElementChild.style.width=p+"%"};addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);upd();
+</script>
 </body>
 </html>
