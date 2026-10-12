@@ -18,7 +18,7 @@ Open <http://127.0.0.1:3000>. The SQLite database is created at `data/glycoguard
 
 For development with automatic restarts, use `npm.cmd run dev`. Run tests with `npm.cmd test`.
 
-The dashboard has separate topic routes for `/disease`, `/numbers`, `/screening`, `/clinical`, `/genetics`, and `/references`. The overview links to each topic; the navigation and browser history work across those pages. The disease page includes a dedicated Cause of Mutation section covering inheritance, variant effects, and the featured c.2560C>T example. Topic pages include in-page section links; screening records and references are searchable, estimates can be filtered by measure and keyword, and the visible estimates can be exported as CSV.
+The dashboard has separate topic routes for `/disease`, `/numbers`, `/screening`, `/clinical`, `/genetics`, and `/references`. The overview links to each topic; the navigation and browser history work across those pages. The disease page includes a dedicated Cause of Mutation section covering inheritance, variant effects, and the featured c.2560C>T example. Topic pages include in-page section links; screening records and references are searchable, estimates can be filtered by measure and keyword, and the visible estimates can be exported as CSV. The genetics page also includes a three-question interactive mutation challenge with feedback, progress, scoring, and a retry option.
 
 ## Evidence admin
 
