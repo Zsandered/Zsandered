@@ -869,6 +869,11 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
 .section.alt::after{animation-delay:-17s;animation-duration:40s}
 @media(max-width:760px){.hero{background-size:180% 180%,180% 180%,100% 100%;animation-duration:46s}.section{background-size:170% 170%,170% 170%,100% 100%;animation-duration:56s}.hero::before,.hero::after,.section::after{animation-duration:48s}}
 @media(prefers-reduced-motion:reduce){.hero,.section,.hero::before,.hero::after,.section::before,.section::after{animation:none!important;will-change:auto!important}}
+
+.login-screen{position:relative;min-height:calc(100vh - 110px);display:grid;align-items:center;overflow:hidden;padding:clamp(34px,6vw,74px) 22px;background:radial-gradient(ellipse at 12% 15%,rgba(92,170,128,.24),transparent 35%),radial-gradient(ellipse at 88% 88%,rgba(240,180,76,.25),transparent 36%),linear-gradient(135deg,#eaf3ec,#f9f4e7 56%,#eaf0e8);isolation:isolate}.login-screen::before,.login-screen::after{content:"";position:absolute;z-index:-1;pointer-events:none;border:1px solid rgba(38,122,99,.15);border-radius:50%;animation:gg-orbit-drift 34s ease-in-out infinite alternate}.login-screen::before{width:min(52vw,640px);height:min(52vw,640px);top:-33%;left:-19%;box-shadow:0 0 0 24px rgba(38,122,99,.035),0 0 0 58px rgba(38,122,99,.025)}.login-screen::after{width:min(43vw,520px);height:min(43vw,520px);right:-18%;bottom:-35%;animation-delay:-15s}.login-shell{width:min(100%,1040px);margin:auto}.login-back{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;color:#38584a;font-size:13px;font-weight:750;text-decoration:none}.login-back:hover{color:var(--terracotta);transform:translateX(-2px)}.login-card{display:grid;grid-template-columns:minmax(0,.95fr) minmax(360px,1.05fr);overflow:hidden;border:1px solid rgba(34,77,58,.14);border-radius:28px;background:rgba(255,255,250,.92);box-shadow:0 28px 80px rgba(27,58,44,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.login-story{position:relative;display:flex;min-height:550px;flex-direction:column;justify-content:center;overflow:hidden;padding:clamp(30px,5vw,58px);background:linear-gradient(145deg,#163a31,#245746 70%,#2e6651);color:#f9f8ef}.login-story::after{content:"";position:absolute;right:-100px;bottom:-120px;width:310px;height:310px;border:1px solid rgba(245,215,152,.23);border-radius:50%;box-shadow:0 0 0 18px rgba(245,215,152,.04),0 0 0 48px rgba(245,215,152,.035),0 0 0 82px rgba(245,215,152,.025);pointer-events:none}.login-mark{display:grid;width:48px;height:48px;place-items:center;margin-bottom:42px;border:1px solid rgba(245,215,152,.3);border-radius:15px;background:rgba(255,255,255,.08);color:#f4d28c}.login-mark svg{width:25px;height:29px}.login-kicker{margin:0 0 14px;color:#f0cc82;font-size:10px;font-weight:850;letter-spacing:.2em;text-transform:uppercase}.login-story h1{max-width:440px;margin:0 0 17px;color:#fffdf5;font-family:var(--serif);font-size:clamp(36px,4vw,54px);font-weight:500;letter-spacing:-.045em;line-height:1.08}.login-story>p:not(.login-kicker){max-width:400px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.8}.login-flow{display:flex;align-items:center;gap:10px;margin:29px 0 24px;color:#fff8e8;font-family:var(--mono);font-size:13px;font-weight:700}.login-flow span{display:grid;min-width:52px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.08)}.login-flow b{color:#f0cc82;font-size:16px}.login-story .login-caption{max-width:370px;color:rgba(255,255,255,.62);font-size:12px;line-height:1.7}.login-form-panel{display:flex;flex-direction:column;justify-content:center;padding:clamp(30px,5vw,62px)}.login-form-brand{display:flex;align-items:center;gap:10px;margin-bottom:35px;color:var(--navy);font-family:var(--serif);font-size:19px;font-weight:700}.login-form-brand svg{width:21px;height:27px;color:var(--teal)}.login-form-panel h2{margin:0 0 7px;color:var(--navy);font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-.04em}.login-form-intro{margin:0 0 27px;color:#6b7971;font-size:14px}.login-field{display:block;margin:0 0 18px;color:#2a4338;font-size:13px;font-weight:750}.login-field input{display:block;width:100%;min-height:50px;margin-top:8px;padding:12px 14px;border:1px solid #d9e3da;border-radius:12px;background:#fff;color:#20372d;font-size:15px;outline:none}.login-field input::placeholder{color:#98a39c}.login-field input:focus{border-color:#478b6a;box-shadow:0 0 0 4px rgba(38,122,99,.12)}.login-password-wrap{position:relative}.login-password-wrap input{padding-right:76px}.login-password-toggle{position:absolute;top:50%;right:8px;transform:translateY(-50%);padding:7px 10px;border:0;border-radius:8px;background:transparent;color:#47715d;font-size:12px;font-weight:800;cursor:pointer}.login-password-toggle:hover{background:#edf4ec;color:#183c30}.login-submit{display:flex;width:100%;min-height:52px;align-items:center;justify-content:center;gap:10px;margin:8px 0 15px;border:1px solid #163a31;border-radius:13px;background:#163a31;color:white;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 22px rgba(22,58,49,.14)}.login-submit:hover{transform:translateY(-2px);background:#245746;box-shadow:0 14px 28px rgba(22,58,49,.2)}.login-status{margin:12px 0;padding:12px 14px;border:1px solid #e5c988;border-radius:12px;background:#fff8e8;color:#634a1d;font-size:13px;line-height:1.6}.login-auth-note{margin:8px 0;color:#77847b;font-size:12px;line-height:1.65}.login-dashboard-link{display:inline-block;margin-top:18px;color:#267a63;font-size:13px;font-weight:800;text-decoration:none}.login-dashboard-link:hover{text-decoration:underline}.login-footer-note{margin:19px 0 0;padding-top:16px;border-top:1px solid #e9ede5;color:#7b877f;font-size:11px;line-height:1.6}body[data-page="login"] #page-back{display:none}body[data-page="login"] .footer{background:linear-gradient(135deg,#15372f,#214d42)}
+@media(max-width:760px){.login-screen{min-height:calc(100vh - 58px);padding:26px 16px 38px}.login-card{grid-template-columns:1fr}.login-story{min-height:0;padding:28px 25px 24px}.login-mark{width:42px;height:42px;margin-bottom:22px}.login-story h1{font-size:38px}.login-flow{margin:18px 0 12px}.login-story .login-caption{margin-bottom:0}.login-form-panel{padding:30px 25px 34px}.login-form-brand{margin-bottom:22px}.login-form-panel h2{font-size:32px}.login-form-intro{margin-bottom:22px}}
+@media(max-width:420px){.login-screen{padding-inline:12px}.login-card{border-radius:22px}.login-story,.login-form-panel{padding-inline:21px}.login-story h1{font-size:34px}.login-flow{gap:7px}.login-flow span{min-width:46px}}
+@media(prefers-reduced-motion:reduce){.login-screen::before,.login-screen::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -889,7 +894,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
         <a href="/">Overview</a><a href="/disease">The Disease</a>
         <a href="/numbers">Key Numbers</a><a href="/screening">Screening</a>
         <a href="/clinical">Clinical</a><a href="/genetics">Genetics</a>
-        <a href="/references">References</a>
+        <a href="/references">References</a><a class="nav-login" href="/login">Sign in</a>
       </nav>
     </div>
   </header>
@@ -900,6 +905,39 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
       <span id="page-context">Pompe disease · GlycoGuard</span>
       <nav class="page-section-nav" id="page-section-nav" aria-label="On this page"></nav>
     </div>
+    <section class="section login-screen" id="login">
+      <div class="container login-shell">
+        <a class="login-back" href="/">← Back to GlycoGuard</a>
+        <div class="login-card">
+          <aside class="login-story">
+            <div class="login-mark" aria-hidden="true"><svg viewBox="0 0 24 30" fill="none"><path d="M6 2c13 5 13 21 0 26M18 2C5 7 5 23 18 28M8 6h8M6.5 12h11M6.5 18h11M8 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <p class="login-kicker">Pompe disease · Learning hub</p>
+            <h1>Welcome to your GlycoGuard workspace.</h1>
+            <p>Continue exploring the molecular story—from a change in the GAA gene to its effect on lysosomal glycogen breakdown.</p>
+            <div class="login-flow" aria-label="DNA to RNA to protein"><span>DNA</span><b aria-hidden="true">→</b><span>RNA</span><b aria-hidden="true">→</b><span>GAA</span></div>
+            <p class="login-caption">A learning dashboard for genetics, newborn screening, clinical context, and evidence.</p>
+          </aside>
+          <div class="login-form-panel">
+            <div class="login-form-brand"><svg viewBox="0 0 24 30" fill="none" aria-hidden="true"><path d="M6 2c13 5 13 21 0 26M18 2C5 7 5 23 18 28M8 6h8M6.5 12h11M6.5 18h11M8 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>GlycoGuard</div>
+            <h2>Sign in</h2>
+            <p class="login-form-intro">Enter your account details to continue.</p>
+            <form id="login-form">
+              <label class="login-field" for="login-email">Email address
+                <input id="login-email" name="email" type="email" autocomplete="username" placeholder="you@example.com" required>
+              </label>
+              <label class="login-field" for="login-password">Password
+                <span class="login-password-wrap"><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button class="login-password-toggle" id="login-password-toggle" type="button" aria-controls="login-password" aria-pressed="false">Show</button></span>
+              </label>
+              <button class="login-submit" type="submit">Continue <span aria-hidden="true">→</span></button>
+              <p class="login-status" id="login-status" role="status" aria-live="polite" hidden></p>
+              <p class="login-auth-note">Secure account verification has not been connected yet. This sign-in screen is a preview and cannot authenticate or protect accounts.</p>
+              <a class="login-dashboard-link" href="/">Return to the public dashboard →</a>
+            </form>
+            <p class="login-footer-note">GlycoGuard is an educational resource, not a medical service. No sign-in information is transmitted or saved by this preview.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="hero" id="overview">
       <div class="hero-content">
         <figure class="hero-illustration">
@@ -1485,7 +1523,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
       "/screening": ["screening"],
       "/clinical": ["clinical", "diagnosis", "treatment"],
       "/genetics": ["genetics", "dna", "mutation-lab", "transcription", "translation", "mutation", "pathway", "mutation-quiz", "research"],
-      "/references": ["references"]
+      "/references": ["references"],       "/login": ["login"]
     };
     const routeTitles = {
       "/": "GlycoGuard — The Molecular Story of Pompe Disease",
@@ -1494,7 +1532,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
       "/screening": "Newborn Screening — GlycoGuard",
       "/clinical": "Clinical Context — GlycoGuard",
       "/genetics": "Genetics & Molecular Biology — GlycoGuard",
-      "/references": "References — GlycoGuard"
+      "/references": "References — GlycoGuard",       "/login": "Sign in — GlycoGuard"
     };
     const projectBase = window.location.hostname === "zsandered.github.io" ? "/Zsandered" : "";
     const requestedRoute = new URLSearchParams(window.location.search).get("page");
@@ -1865,5 +1903,26 @@ const mutationOutcomes={T:{dna:"TGA",mrna:"UGA",amino:"STOP",cls:"stop-result",t
   <script src="app.js" defer>
 const mutationOutcomes={T:{dna:"TGA",mrna:"UGA",amino:"STOP",cls:"stop-result",text:"TGA in coding DNA becomes UGA in mRNA, an early stop signal in this simplified example."},A:{dna:"AGA",mrna:"AGA",amino:"Arg",cls:"",text:"AGA also encodes arginine, so this comparison keeps the same amino acid. This alone does not predict a clinical outcome."},G:{dna:"GGA",mrna:"GGA",amino:"Gly",cls:"",text:"GGA encodes glycine instead of arginine, a missense change in this codon-level exercise. Its real-world effect cannot be determined here."}};const ld=document.getElementById("lab-dna-codon"),lm=document.getElementById("lab-mrna-codon"),la=document.getElementById("lab-amino-acid"),le=document.getElementById("lab-explanation");document.querySelectorAll("[data-lab-base]").forEach(btn=>btn.addEventListener("click",()=>{const o=mutationOutcomes[btn.dataset.labBase];document.querySelectorAll("[data-lab-base]").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));[[ld,o.dna],[lm,o.mrna],[la,o.amino]].forEach(([el,val])=>{el.textContent=val;el.className=o.cls});le.textContent=o.text}));const rp=document.querySelector(".reading-progress"),upd=()=>{const d=document.documentElement.scrollHeight-innerHeight,p=d>0?Math.min(100,Math.round(scrollY/d*100)):0;rp.setAttribute("aria-valuenow",String(p));rp.firstElementChild.style.width=p+"%"};addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);upd();
 </script>
-</body>
+<script>
+    (() => {
+      const loginForm = document.getElementById("login-form");
+      if (!loginForm) return;
+      const password = document.getElementById("login-password");
+      const toggle = document.getElementById("login-password-toggle");
+      const status = document.getElementById("login-status");
+      toggle.addEventListener("click", () => {
+        const showPassword = password.type === "password";
+        password.type = showPassword ? "text" : "password";
+        toggle.textContent = showPassword ? "Hide" : "Show";
+        toggle.setAttribute("aria-pressed", String(showPassword));
+      });
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        status.textContent = "Sign-in is not configured yet. No credentials were sent or saved. You can continue to the public GlycoGuard dashboard.";
+        status.hidden = false;
+        password.value = "";
+      });
+    })();
+  </script>
+  </body>
 </html>
