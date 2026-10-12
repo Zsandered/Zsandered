@@ -26,9 +26,9 @@ Open <http://127.0.0.1:3000/admin> to review sources, screening programmes, and 
 
 To enable the console, set `ADMIN_TOKEN` before starting the server. The token is kept in the current browser tab's session storage and sent only to this same-origin server for protected API requests. Signing out removes it from the tab. Admin authentication is a single shared token, not individual accounts or a production identity system.
 
-### Deploying the site and admin console on Render
+### Deploying the site and admin console on Render (free tier)
 
-The `render.yaml` blueprint deploys the dashboard, `/admin` login, and API together on one HTTPS origin. It provisions a persistent disk for SQLite and keeps `ADMIN_TOKEN` as a private Render environment variable. Create a long random token in Render's environment settings; never commit it or put it in frontend code. The paid web service and persistent disk are required to keep reviewed records between deploys. After connecting this repository in Render, open the generated service URL and append `/admin` to sign in.
+The `render.yaml` blueprint deploys the dashboard, `/admin` login, and API together on one HTTPS origin. It keeps `ADMIN_TOKEN` as a private Render environment variable. Create a long random token in Render's environment settings; never commit it or put it in frontend code. The free tier uses temporary SQLite storage: reviewed records may reset when Render restarts, sleeps, or redeploys the service. A persistent disk requires a paid plan. After connecting this repository in Render, open the generated service URL and append `/admin` to sign in.
 
 ## API
 
