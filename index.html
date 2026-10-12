@@ -1503,7 +1503,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
     };
     const projectBase = window.location.hostname === "zsandered.github.io" ? "/Zsandered" : "";
     const requestedRoute = new URLSearchParams(window.location.search).get("page");
-    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    const currentPath = (window.location.pathname.replace(/\/+$/, "") || "/").replace(/\/index\.html$/, "") || "/";
     const currentRoute = requestedRoute || (projectBase && currentPath === projectBase ? "/" : projectBase && currentPath.indexOf(projectBase + "/") === 0 ? currentPath.slice(projectBase.length) : currentPath);
     if (projectBase) {
       Array.from(document.querySelectorAll("a")).forEach((link) => {
