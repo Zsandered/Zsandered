@@ -298,6 +298,28 @@
     color: #ffe2a2 !important;
     background: rgba(255, 255, 255, .12);
   }
+
+  .site-header .nav-links.open a {
+    color: #f8f6ee !important;
+    background-color: transparent !important;
+    -webkit-text-fill-color: #f8f6ee !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .28);
+  }
+
+  .site-header .nav-links.open a[aria-current],
+  .site-header .nav-links.open a[aria-current="page"],
+  .site-header .nav-links.open a[aria-current="location"] {
+    color: #ffe2a2 !important;
+    background-color: rgba(255, 226, 162, .16) !important;
+    -webkit-text-fill-color: #ffe2a2 !important;
+  }
+
+  .site-header .nav-links.open a:hover,
+  .site-header .nav-links.open a:focus-visible {
+    color: #ffe2a2 !important;
+    background-color: rgba(255, 255, 255, .12) !important;
+    -webkit-text-fill-color: #ffe2a2 !important;
+  }
 }
 
 main > .section::before,
