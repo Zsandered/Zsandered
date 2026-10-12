@@ -487,12 +487,16 @@ function createApp({ databasePath = process.env.DATABASE_PATH || DEFAULT_DB_PATH
   const dashboardScript = fs.readFileSync(path.join(ROOT, "app.js"));
   const adminHtml = fs.readFileSync(path.join(ROOT, "admin.html"));
   const adminScript = fs.readFileSync(path.join(ROOT, "admin.js"));
+  const contrastStyles = fs.readFileSync(path.join(ROOT, "contrast.css"));
+  const adminStyles = fs.readFileSync(path.join(ROOT, "admin-theme.css"));
   app.get(["/", "/disease", "/numbers", "/screening", "/clinical", "/genetics", "/references"], (req, res) =>
     res.type("html").send(dashboardHtml));
   app.get("/admin", (req, res) => res.type("html").send(adminHtml));
   app.get("/index.html", (req, res) => res.type("html").send(dashboardHtml));
   app.get("/app.js", (req, res) => res.type("js").send(dashboardScript));
   app.get("/admin.js", (req, res) => res.type("js").send(adminScript));
+  app.get("/contrast.css", (req, res) => res.type("css").send(contrastStyles));
+  app.get("/admin-theme.css", (req, res) => res.type("css").send(adminStyles));
   app.get("/api", (req, res) => {
     res.json({
       name: "GlycoGuard Evidence API",
@@ -776,8 +780,9 @@ function createApp({ databasePath = process.env.DATABASE_PATH || DEFAULT_DB_PATH
 if (require.main === module) {
   const app = createApp();
   const port = Number(process.env.PORT || 3000);
-  app.listen(port, "127.0.0.1", () => {
-    console.log(`GlycoGuard running at http://127.0.0.1:${port}`);
+  const host = process.env.HOST || "127.0.0.1";
+  app.listen(port, host, () => {
+    console.log(`GlycoGuard running at http://${host}:${port}`);
     console.log(`SQLite database: ${process.env.DATABASE_PATH || DEFAULT_DB_PATH}`);
   });
 }

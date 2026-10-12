@@ -1,5 +1,10 @@
 "use strict";
 
+const visualStylesheet = document.createElement("link");
+visualStylesheet.rel = "stylesheet";
+visualStylesheet.href = new URL("contrast.css", window.location.href).href;
+document.head.append(visualStylesheet);
+
 const formatNumber = (value) => value === null || value === undefined
   ? "Not recorded"
   : new Intl.NumberFormat().format(value);

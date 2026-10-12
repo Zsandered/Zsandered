@@ -26,6 +26,10 @@ Open <http://127.0.0.1:3000/admin> to review sources, screening programmes, and 
 
 To enable the console, set `ADMIN_TOKEN` before starting the server. The token is kept in the current browser tab's session storage and sent only to this same-origin server for protected API requests. Signing out removes it from the tab. Admin authentication is a single shared token, not individual accounts or a production identity system.
 
+### Deploying the site and admin console on Render
+
+The `render.yaml` blueprint deploys the dashboard, `/admin` login, and API together on one HTTPS origin. It provisions a persistent disk for SQLite and keeps `ADMIN_TOKEN` as a private Render environment variable. Create a long random token in Render's environment settings; never commit it or put it in frontend code. The paid web service and persistent disk are required to keep reviewed records between deploys. After connecting this repository in Render, open the generated service URL and append `/admin` to sign in.
+
 ## API
 
 Public read routes return only approved records whose linked evidence source is also approved:
@@ -66,7 +70,7 @@ $headers = @{ Authorization = "Bearer $env:ADMIN_TOKEN" }
 Invoke-RestMethod http://127.0.0.1:3000/api/admin/screening-programs -Headers $headers
 ```
 
-Admin token configuration is process-local. Public reads are unauthenticated, but the server binds to `127.0.0.1` by default and does not enable cross-origin access. Do not expose this local admin API to the internet without adding deployment-grade authentication, authorization, transport security, and operational safeguards.
+Admin token configuration is process-local. Public reads are unauthenticated. The server binds to `127.0.0.1` by default for local development; the Render blueprint sets `HOST=0.0.0.0` behind Render's HTTPS edge. Admin routes remain protected by the server-only token and same-origin requests.
 
 ## Interactive learning
 

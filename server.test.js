@@ -56,12 +56,22 @@ test("serves dashboard frontend only through the app route", async () => {
   const adminPage = await fetch(`${baseUrl}/admin`);
   assert.equal(adminPage.status, 200);
   assert.match(adminPage.headers.get("content-type"), /text\/html/);
-  assert.match(await adminPage.text(), /Evidence administration/);
+  const adminHtml = await adminPage.text();
+  assert.match(adminHtml, /Evidence administration/);
+  assert.match(adminHtml, /admin-theme\.css/);
 
   const adminScript = await fetch(`${baseUrl}/admin.js`);
   assert.equal(adminScript.status, 200);
   assert.match(adminScript.headers.get("content-type"), /javascript/);
   assert.match(await adminScript.text(), /sessionStorage/);
+
+  const contrastStyles = await fetch(`${baseUrl}/contrast.css`);
+  assert.equal(contrastStyles.status, 200);
+  assert.match(contrastStyles.headers.get("content-type"), /text\/css/);
+
+  const adminStyles = await fetch(`${baseUrl}/admin-theme.css`);
+  assert.equal(adminStyles.status, 200);
+  assert.match(adminStyles.headers.get("content-type"), /text\/css/);
 });
 
 test("exposes only approved and source-linked seed data publicly", async () => {
