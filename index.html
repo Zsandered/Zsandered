@@ -1866,7 +1866,7 @@ const mutationOutcomes={T:{dna:"TGA",mrna:"UGA",amino:"STOP",cls:"stop-result",t
     }
 
 </script>
-  <script src="app.js" defer>
+  <script src="app.js?v=dna-background-1" defer>
 const mutationOutcomes={T:{dna:"TGA",mrna:"UGA",amino:"STOP",cls:"stop-result",text:"TGA in coding DNA becomes UGA in mRNA, an early stop signal in this simplified example."},A:{dna:"AGA",mrna:"AGA",amino:"Arg",cls:"",text:"AGA also encodes arginine, so this comparison keeps the same amino acid. This alone does not predict a clinical outcome."},G:{dna:"GGA",mrna:"GGA",amino:"Gly",cls:"",text:"GGA encodes glycine instead of arginine, a missense change in this codon-level exercise. Its real-world effect cannot be determined here."}};const ld=document.getElementById("lab-dna-codon"),lm=document.getElementById("lab-mrna-codon"),la=document.getElementById("lab-amino-acid"),le=document.getElementById("lab-explanation");document.querySelectorAll("[data-lab-base]").forEach(btn=>btn.addEventListener("click",()=>{const o=mutationOutcomes[btn.dataset.labBase];document.querySelectorAll("[data-lab-base]").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));[[ld,o.dna],[lm,o.mrna],[la,o.amino]].forEach(([el,val])=>{el.textContent=val;el.className=o.cls});le.textContent=o.text}));const rp=document.querySelector(".reading-progress"),upd=()=>{const d=document.documentElement.scrollHeight-innerHeight,p=d>0?Math.min(100,Math.round(scrollY/d*100)):0;rp.setAttribute("aria-valuenow",String(p));rp.firstElementChild.style.width=p+"%"};addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);upd();
 </script>
 <script>
