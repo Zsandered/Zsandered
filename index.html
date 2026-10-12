@@ -854,6 +854,21 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}body{background:var(--paper
 
 /* Keep the expanded mobile menu readable against its light-panel theme. */
 @media(max-width:760px){.nav-links.open{background:var(--navy);color:#fff;border-color:rgba(255,255,255,.18);box-shadow:0 18px 42px rgba(14,38,31,.25)}.nav-links.open a{display:flex;min-height:48px;align-items:center;padding:11px 14px;color:#fff!important;border-bottom:1px solid rgba(255,255,255,.13);font-size:12px;letter-spacing:.12em}.nav-links.open a:hover,.nav-links.open a:focus-visible{background:rgba(255,255,255,.1);color:#ffe2a2!important}.nav-links.open a[aria-current="page"],.nav-links.open a[aria-current="location"]{color:#ffe2a2!important;background:rgba(255,255,255,.08)}.nav-links.open a:last-child{border-bottom:0}}
+
+/* Slow, low-contrast ambient motion keeps the science content in focus. */
+@keyframes gg-aurora-drift{0%{background-position:0% 0%,100% 100%,0% 0%}100%{background-position:100% 100%,0% 0%,100% 100%}}
+@keyframes gg-orbit-drift{0%{transform:translate3d(0,0,0) rotate(-5deg) scale(.98)}50%{transform:translate3d(-18px,15px,0) rotate(2deg) scale(1.025)}100%{transform:translate3d(12px,-12px,0) rotate(7deg) scale(1)}}
+@keyframes gg-dot-drift{0%{background-position:0 0}100%{background-position:44px 33px}}
+.hero{background-size:145% 145%,145% 145%,100% 100%;animation:gg-aurora-drift 34s ease-in-out infinite alternate}
+.hero::before,.hero::after{will-change:transform;animation:gg-orbit-drift 30s ease-in-out infinite alternate}
+.hero::after{animation-delay:-13s;animation-duration:36s}
+.section{background-size:135% 135%,135% 135%,100% 100%;animation:gg-aurora-drift 42s ease-in-out infinite alternate}
+.section.alt{animation-duration:48s;animation-direction:alternate-reverse}
+.section::before{animation:gg-dot-drift 52s linear infinite alternate}
+.section::after{will-change:transform;animation:gg-orbit-drift 34s ease-in-out infinite alternate}
+.section.alt::after{animation-delay:-17s;animation-duration:40s}
+@media(max-width:760px){.hero{background-size:180% 180%,180% 180%,100% 100%;animation-duration:46s}.section{background-size:170% 170%,170% 170%,100% 100%;animation-duration:56s}.hero::before,.hero::after,.section::after{animation-duration:48s}}
+@media(prefers-reduced-motion:reduce){.hero,.section,.hero::before,.hero::after,.section::before,.section::after{animation:none!important;will-change:auto!important}}
 </style>
 </head>
 <body>
