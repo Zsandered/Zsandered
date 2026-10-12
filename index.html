@@ -1420,20 +1420,7 @@
       "/genetics": "Genetics & Molecular Biology — GlycoGuard",
       "/references": "References — GlycoGuard"
     };
-    const projectBase = window.location.hostname === "zsandered.github.io" ? "/Zsandered" : "";
-    const requestedRoute = new URLSearchParams(window.location.search).get("page");
-    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-    const currentRoute = requestedRoute || (projectBase && currentPath === projectBase ? "/" : projectBase && currentPath.indexOf(projectBase + "/") === 0 ? currentPath.slice(projectBase.length) : currentPath);
-    if (projectBase) {
-      Array.from(document.querySelectorAll("a")).forEach((link) => {
-        const href = link.getAttribute("href");
-        if (!href || href.charAt(0) !== "/") return;
-        const target = new URL(href, window.location.origin);
-        if (target.origin !== window.location.origin || target.pathname === projectBase || target.pathname.indexOf(projectBase + "/") === 0) return;
-        const route = target.pathname === "/" ? "" : target.pathname;
-        link.href = projectBase + (route ? "/?page=" + encodeURIComponent(route) + target.hash : "/" + target.hash);
-      });
-    }
+    const currentRoute = window.location.pathname.replace(/\/+$/, "") || "/";
     const visibleSections = new Set(routeSections[currentRoute] || routeSections["/"]);
     document.querySelectorAll("main > section").forEach((section) => {
       section.hidden = !visibleSections.has(section.id);
@@ -1457,8 +1444,7 @@
       document.querySelector("#page-context").textContent = `${routeTitles[currentRoute].replace(" — GlycoGuard", "")} · GlycoGuard`;
     }
     document.querySelectorAll("#main-nav a").forEach((link) => {
-      const linkRoute = projectBase ? new URL(link.href).searchParams.get("page") || "/" : link.getAttribute("href");
-      if (linkRoute === currentRoute) link.setAttribute("aria-current", "page");
+      if (link.getAttribute("href") === currentRoute) link.setAttribute("aria-current", "page");
     });
     const menuButton = document.querySelector(".menu-toggle");
     const navigation = document.querySelector("#main-nav");
@@ -1648,6 +1634,6 @@
       if (section) sectionObserver.observe(section);
     });
   </script>
-  <script src="/app.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
