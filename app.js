@@ -5,6 +5,20 @@ visualStylesheet.rel = "stylesheet";
 visualStylesheet.href = new URL("contrast.css", window.location.href).href;
 document.head.append(visualStylesheet);
 
+const dnaAtmosphere = document.querySelector(".dna-atmosphere");
+const hero = document.querySelector(".hero");
+if (dnaAtmosphere && hero) {
+  hero.prepend(dnaAtmosphere);
+  const sourceStrand = dnaAtmosphere.querySelector(".dna-strand");
+  if (sourceStrand) {
+    ["dna-strand-d", "dna-strand-e", "dna-strand-f", "dna-strand-g"].forEach((className) => {
+      const strand = sourceStrand.cloneNode(true);
+      strand.className = `dna-strand ${className}`;
+      dnaAtmosphere.append(strand);
+    });
+  }
+}
+
 const formatNumber = (value) => value === null || value === undefined
   ? "Not recorded"
   : new Intl.NumberFormat().format(value);

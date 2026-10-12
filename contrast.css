@@ -238,3 +238,77 @@
     justify-content: flex-end;
   }
 }
+
+.hero .dna-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero .dna-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(244, 202, 120, .65) 1.3px, transparent 2px),
+    radial-gradient(circle, rgba(168, 207, 178, .62) 1px, transparent 1.8px);
+  background-size: 113px 107px, 157px 149px;
+  background-position: 14px 22px, 71px 63px;
+  opacity: .58;
+  mask-image: linear-gradient(90deg, #000, transparent 37%, transparent 63%, #000);
+  animation: dna-particle-drift 32s linear infinite alternate;
+}
+
+.hero .dna-strand {
+  z-index: 0;
+  opacity: .23;
+  filter: drop-shadow(0 0 13px rgba(46, 125, 107, .34));
+}
+
+.hero .dna-strand-c { left: 7%; top: 69%; opacity: .18; }
+.hero .dna-strand-d { left: 23%; top: 2%; animation-delay: -8s; animation-duration: 36s; }
+.hero .dna-strand-e { right: 24%; top: 67%; opacity: .19; animation-delay: -18s; animation-duration: 39s; }
+.hero .dna-strand-f { right: 2%; top: 4%; animation-delay: -24s; animation-duration: 34s; }
+.hero .dna-strand-g { left: 1%; top: 55%; opacity: .2; animation-delay: -14s; animation-duration: 41s; }
+
+.hero .hero-content {
+  z-index: 1;
+}
+
+main > .section::before,
+main > .section::after {
+  z-index: 0;
+}
+
+main > .section::before {
+  opacity: .34;
+  background-image:
+    radial-gradient(circle, rgba(38, 122, 99, .27) 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(189, 104, 74, .19) .8px, transparent 1.5px);
+  background-size: 28px 28px, 47px 47px;
+  background-position: 0 0, 13px 19px;
+  mask-image: linear-gradient(90deg, #000, transparent 36%, transparent 64%, #000);
+}
+
+main > .section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes dna-particle-drift {
+  to { background-position: 84px 63px, 18px 119px; }
+}
+
+@media (max-width: 700px) {
+  .hero .dna-strand { opacity: .15; }
+  .hero .dna-strand-c,
+  .hero .dna-strand-e { display: none; }
+  .hero .dna-strand-d { left: 17%; }
+  .hero .dna-strand-f { right: -5%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .dna-atmosphere::before { animation: none; }
+}
