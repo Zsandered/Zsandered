@@ -322,6 +322,32 @@
   }
 }
 
+@media (max-width: 1500px) {
+  header.site-header #main-nav.nav-links.open {
+    background: #15372f !important;
+    background-image: linear-gradient(145deg, #15372f, #214d42) !important;
+    color: #f8f6ee !important;
+    border-color: rgba(255, 255, 255, .2) !important;
+    box-shadow: 0 18px 42px rgba(10, 30, 24, .32) !important;
+  }
+
+  header.site-header #main-nav.nav-links.open a,
+  header.site-header #main-nav.nav-links.open a[aria-current],
+  header.site-header #main-nav.nav-links.open a[aria-current="page"],
+  header.site-header #main-nav.nav-links.open a[aria-current="location"] {
+    color: #f8f6ee !important;
+    -webkit-text-fill-color: #f8f6ee !important;
+  }
+
+  header.site-header #main-nav.nav-links.open a[aria-current],
+  header.site-header #main-nav.nav-links.open a[aria-current="page"],
+  header.site-header #main-nav.nav-links.open a[aria-current="location"] {
+    color: #ffe2a2 !important;
+    -webkit-text-fill-color: #ffe2a2 !important;
+    background-color: rgba(255, 226, 162, .16) !important;
+  }
+}
+
 main > .section::before,
 main > .section::after {
   z-index: 0;

@@ -2,7 +2,7 @@
 
 const visualStylesheet = document.createElement("link");
 visualStylesheet.rel = "stylesheet";
-visualStylesheet.href = new URL("contrast.css?v=mobile-nav-contrast-2", window.location.href).href;
+visualStylesheet.href = new URL("contrast.css?v=mobile-nav-contrast-3", window.location.href).href;
 document.head.append(visualStylesheet);
 
 const dnaAtmosphere = document.querySelector(".dna-atmosphere");
