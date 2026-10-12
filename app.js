@@ -2,7 +2,7 @@
 
 const visualStylesheet = document.createElement("link");
 visualStylesheet.rel = "stylesheet";
-visualStylesheet.href = new URL("contrast.css?v=dna-background-1", window.location.href).href;
+visualStylesheet.href = new URL("contrast.css?v=dna-background-2", window.location.href).href;
 document.head.append(visualStylesheet);
 
 const dnaAtmosphere = document.querySelector(".dna-atmosphere");

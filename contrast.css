@@ -283,16 +283,38 @@ main > .section::after {
 }
 
 main > .section::before {
-  opacity: .34;
+  opacity: .48;
   background-image:
-    radial-gradient(circle, rgba(38, 122, 99, .27) 1px, transparent 1.7px),
-    radial-gradient(circle, rgba(189, 104, 74, .19) .8px, transparent 1.5px);
-  background-size: 28px 28px, 47px 47px;
-  background-position: 0 0, 13px 19px;
-  mask-image: linear-gradient(90deg, #000, transparent 36%, transparent 64%, #000);
+    radial-gradient(circle, rgba(38, 122, 99, .42) 1.2px, transparent 2px),
+    radial-gradient(circle, rgba(189, 104, 74, .34) 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(188, 136, 81, .24) .8px, transparent 1.6px);
+  background-size: 31px 31px, 53px 53px, 89px 89px;
+  background-position: 0 0, 17px 23px, 41px 12px;
+  mask-image: linear-gradient(90deg, #000, transparent 30%, transparent 70%, #000);
+  animation: dna-section-particles 18s linear infinite alternate;
 }
 
-main > .section > .container {
+main > .section::after {
+  inset: 0;
+  top: 0;
+  right: auto;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: .68;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 240'%3E%3Cpath d='M12 0C68 30 68 60 12 90S-44 150 12 180 68 210 12 240M68 0C12 30 12 60 68 90S124 150 68 180 12 210 68 240' fill='none' stroke='%23267a63' stroke-opacity='.52' stroke-width='2' stroke-linecap='round' stroke-dasharray='7 5'/%3E%3Cpath d='M12 0H68M40 22H66M68 45H12M40 67H14M12 90H68M40 112H66M68 135H12M40 157H14M12 180H68M40 202H66M68 225H12' fill='none' stroke='%23bd684a' stroke-opacity='.42' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 240'%3E%3Cpath d='M12 0C68 30 68 60 12 90S-44 150 12 180 68 210 12 240M68 0C12 30 12 60 68 90S124 150 68 180 12 210 68 240' fill='none' stroke='%23267a63' stroke-opacity='.52' stroke-width='2' stroke-linecap='round' stroke-dasharray='7 5'/%3E%3Cpath d='M12 0H68M40 22H66M68 45H12M40 67H14M12 90H68M40 112H66M68 135H12M40 157H14M12 180H68M40 202H66M68 225H12' fill='none' stroke='%23bd684a' stroke-opacity='.42' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 76px 228px, 76px 228px;
+  background-position: 2.5% 10px, 97.5% 124px;
+  background-repeat: repeat-y;
+  mask-image: linear-gradient(90deg, #000 0%, transparent 17%, transparent 83%, #000 100%);
+  animation: dna-page-drift 16s ease-in-out infinite alternate;
+}
+
+main > .section > :not(.dna-atmosphere) {
   position: relative;
   z-index: 1;
 }
@@ -301,14 +323,31 @@ main > .section > .container {
   to { background-position: 84px 63px, 18px 119px; }
 }
 
+@keyframes dna-section-particles {
+  to { background-position: 31px 47px, -36px 76px, 88px -43px; }
+}
+
+@keyframes dna-page-drift {
+  from { background-position: 2.5% 10px, 97.5% 124px; }
+  to { background-position: 4% 180px, 96% -46px; }
+}
+
 @media (max-width: 700px) {
   .hero .dna-strand { opacity: .15; }
   .hero .dna-strand-c,
   .hero .dna-strand-e { display: none; }
   .hero .dna-strand-d { left: 17%; }
   .hero .dna-strand-f { right: -5%; }
+
+  main > .section::after {
+    opacity: .52;
+    background-size: 60px 180px, 60px 180px;
+    mask-image: linear-gradient(90deg, #000, transparent 24%, transparent 76%, #000);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero .dna-atmosphere::before { animation: none; }
+  .hero .dna-atmosphere::before,
+  main > .section::before,
+  main > .section::after { animation: none; }
 }
